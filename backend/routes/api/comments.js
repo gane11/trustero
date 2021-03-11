@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 const { asyncHandler, handleValidationErrors } = require("../utils");
 const db = requrie("../../db/models");
 
-const { Comments} = db;
+const { Comment} = db;
 
 const commentValidations = [
   check("description")
@@ -12,6 +12,13 @@ const commentValidations = [
     .withMessage("Description has to be between 1 and 200 letters long"),
 ];
 
+const commentNotFoundError = (id) => {
+  const err = Error("Comment not found");
+  err.errors = [`Comment with the id of ${id} could not be found`];
+  err.title = "Comment not found";
+  err.status = 404;
+  return err;
+};
 
 
 
@@ -19,7 +26,7 @@ router.get(
   "/:tasktId/comments",
   asyncHandler(async (req, res) => {
     const taskId = req.params.taskId;
-    const comments = await Comments.findAll({
+    const comments = await Comment.findAll({
       where: {
         taskId,
       },
@@ -34,9 +41,31 @@ router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const commentId = req.params.id;
-    const comment = await Comments.findByPk(commentId);
+    const comment = await Comment.findByPk(commentId);
 
-    res.json({ comment});
+    if (comment) {
+        res.json({ comment});    
+    } else {
+        next(commentNotFoundError(commentId))
+    }
+  })
+);
+
+router.put(
+  "/:id(\\d+)",
+  asyncHandler(async (req, res, next) => {
+    const id = req.params,id;
+    const comment = await Comment.findOne({
+      where: {
+        id
+      },
+    });
+    if (comment) {
+      await Comment.update({ commentDescription: req.body.editComment});
+      res.json({ comment });
+    } else {
+      next(taskNotFoundError(id));
+    }
   })
 );
 
@@ -46,11 +75,11 @@ router.post(
   asyncHandler(async (req, res) => {
     const { description } = req.body;
 
-    let comment = await Comments.create({
+    let comment = await Comment.create({
       description,
     });
 
-    comment = await Comments.findOne({
+    comment = await Comment.findOne({
       where: {
         id: comment.id,
       },
@@ -65,15 +94,20 @@ router.delete(
   asyncHandler(async (req, res, next) => {
     const id = req.params.id;
 
-    const comment = await Comments.findOne({
+    const comment = await Comment.findOne({
       where: { 
           id 
         },
     });
 
+
+    if (comment) {
     await Comment.destroy();
-    res.status(200).json({ comment});
-  })
-);
+    res.json({ message: `Deleted Comment with id of ${id}!` });
+  } else {
+    next(commentNotFoundError(id));
+  };
+
+  }));
 
 module.exports = router;
