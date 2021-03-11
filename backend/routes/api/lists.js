@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {check} = require('express-validator');
 
-const {asyncHandler, habdleValidationErrors} = require('../utils');
+const {asyncHandler, handleValidationErrors} = require('../utils');
 const db = requrie('../../db/models');
 
 const {Lists} = db;
@@ -34,7 +34,9 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 }))
 
 
-router.post('/', asyncHandler( async(req, res) => {
+router.post('/',
+listValidations,
+ asyncHandler( async(req, res) => {
     const {title} = req.body;
 
     let list = await List.create({title});
