@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 const { asyncHandler, handleValidationErrors } = require("../utils");
 const db = requrie("../../db/models");
 
-const { Tasks } = db;
+const { Task } = db;
 
 const taskValidations = [
   check("title")
@@ -17,6 +17,13 @@ const taskValidations = [
     .withMessage("Description has to be between 1 and 200 letters long"),
 ];
 
+const taskNotFoundError = (id) => {
+  const err = Error("Task not found");
+  err.errors = [`Task with the id of ${id} could not be found`];
+  err.title = "Task not found";
+  err.status = 404;
+  return err;
+};
 
 router.get(
   "/:listId/tasks",
@@ -37,9 +44,30 @@ router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const taskId = req.params.id;
-    const task = await Tasks.findByPk(taskId);
+    const task = await Task.findByPk(taskId);
+   if (task) {
+     res.json({ task });
+   } else {
+     next(taskNotFoundError(taskId));
+   }
+  })
+);
 
-    res.json({ task });
+router.put(
+  "/:id(\\d+)",
+  asyncHandler(async (req, res, next) => {
+    const id = req.params,id;
+    const task = await Task.findOne({
+      where: {
+        id
+      },
+    });
+    if (task) {
+      await Task.update({ taskTitle: req.body.editTaskTitle });
+      res.json({ task });
+    } else {
+      next(taskNotFoundError(id));
+    }
   })
 );
 
@@ -76,9 +104,13 @@ router.delete(
       where: { id },
     });
 
-    await task.destroy();
-    res.status(200).json({ task });
-  })
-);
+    if (task) {
+    await Task.destroy();
+    res.json({ message: `Deleted Task with id of ${taskId}!` });
+  } else {
+    next(taskNotFoundError(taskId));
+  };
+
+  }));
 
 module.exports = router;

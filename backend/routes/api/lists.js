@@ -4,7 +4,7 @@ const {check} = require('express-validator');
 const {asyncHandler, handleValidationErrors} = require('../utils');
 const db = requrie('../../db/models');
 
-const {Lists} = db;
+const {List} = db;
 
 
 const listValidations = [
@@ -12,9 +12,17 @@ const listValidations = [
         .exists({checkFalsy: true})
         .withMessage('Name of the list required')
         .isLength({min: 1, max: 50})
-        .withMessage('List title has to be between 1 and 50 letters long')
-    
+        .withMessage('List title has to be between 1 and 50 letters long'),
+    handleValidationErrors
 ];
+
+const listNotFoundError = (id) => {
+  const err = Error("List not found");
+  err.errors = [`List with the id of ${id} could not be found`];
+  err.title = "List not found";
+  err.status = 404;
+  return err;
+};
 
 
 router.get('/', asyncHandler(async(req, res) => {
@@ -31,7 +39,30 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const list = await List.findByPk(listId);
 
     res.json({list});
+    if (list) {
+    res.json({ list })
+  } else {
+    next(listNotFoundError(listId))
+  }
 }))
+
+router.put(
+  "/:id(\\d+)",
+  asyncHandler(async (req, res, next) => {
+    const id = req.params,id;
+    const list = await List.findOne({
+      where: {
+        id
+      },
+    });
+    if (list) {
+      await list.update({ listTitle: req.body.editListTitle });
+      res.json({ list });
+    } else {
+      next(listNotFoundError(id));
+    }
+  })
+);
 
 
 router.post('/',
@@ -57,9 +88,12 @@ router.delete('/:id', asyncHandler(async (req,res, next) => {
     const list = await List.findOne({
         where: {id}
     });
-
+    if (list) {
     await list.destroy();
-    res.status(200).json({list})
+    res.json({ message: `Deleted list with id of ${listId}!` });
+  } else {
+    next(listNotFoundError(listId));
+  }
 
 }));
 
