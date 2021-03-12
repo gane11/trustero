@@ -1,8 +1,8 @@
 import {baseUrl} from '../../config';
 
-export const LOAD = 'LOAD';
+export const LOAD_COMMENTS = 'LOAD_COMMENTS';
 
-export const load = (comment) => ({type: LOAD, comment});
+export const load = (comments) => ({type: LOAD_COMMENTS, comments});
 
 export const getAllComments = () => async (dispatch) => {
     const res = await fetch(`${baseUrl}/comments`);

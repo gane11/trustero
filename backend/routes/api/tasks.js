@@ -17,6 +17,17 @@ const taskValidations = [
     .withMessage("Description has to be between 1 and 200 letters long"),
 ];
 
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const tasks = await Task.findAll({
+      order: [["createdAt", "DESC"]],
+    });
+
+    res.json({ tasks });
+  })
+);
+
 const taskNotFoundError = (id) => {
   const err = Error("Task not found");
   err.errors = [`Task with the id of ${id} could not be found`];

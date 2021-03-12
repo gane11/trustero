@@ -20,6 +20,16 @@ const commentNotFoundError = (id) => {
   return err;
 };
 
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const comments = await Comment.findAll({
+      order: [["createdAt", "DESC"]],
+    });
+
+    res.json({ comments });
+  })
+);
 
 
 router.get(

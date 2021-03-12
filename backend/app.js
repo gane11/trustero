@@ -17,6 +17,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api/lists', listRoutes)
+app.use("/api/tasks", taskRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Resource could not be found.');

@@ -30,7 +30,7 @@ router.get('/', asyncHandler(async(req, res) => {
         order: [['createdAt','DESC']]
     });
 
-    res.json(lists)
+    res.json({lists})
 }));
 
 
