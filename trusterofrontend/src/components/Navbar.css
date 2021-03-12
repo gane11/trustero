@@ -1,20 +1,20 @@
-.header {
+.navbar__container {
       display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
-    background-color: blue;
+    background-color: #3f51b5;
     border-bottom: black solid 0.2rem;
   width: 100%;
   padding-left: 2rem;
+  height: 5rem;
 }
 
 
-.header-icon {
+.navbar-icon {
   object-fit: contain;
-  height: 8rem;
-  width: 8rem;
+  height: 3rem;
   margin-left: 3rem;
 }
 

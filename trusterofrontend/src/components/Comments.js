@@ -16,11 +16,17 @@ const Comments = ({commentsSection, getAllComments, comments, getAllTasks, tasks
     }, [])
 
 
-    return(
-        <div>
-            {}
-        </div>
-    )
+    return (
+      <div className="comments__container">
+        {comments.map((comment) => {
+          return (
+            <>
+              <CommentCard comment={comment} />
+            </>
+          );
+        })}
+      </div>
+    );
 };
 
 

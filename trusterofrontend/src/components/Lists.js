@@ -3,25 +3,36 @@ import {useSelector, useDispatch} from 'react-redux';
 import './Lists.css';
 import ListCard from './ListCard';
 import {getAllLists} from '../store/actions/listActions';
+import Button from "@material-ui/core/Button";
 
-const Lists = ({setTasksSection, getAllLists, lists}) => {
+const Lists = ({handleSetTask, getAllLists, lists}) => {
 
     useEffect(() => {
         getAllLists();
     }, []);
 
+    const handleClick =() => {
 
-    return(
-        <div className="lists__container">
-            {lists.map((list) => {
-                <ListCard list={list} />
-            })}
-        </div>
+    }
+    return (
+      <div className="lists__container">
+        <Button variant="contained" color="primary" onClick={handleClick}>
+            ADD LIST
+        </Button>
+        {lists.map((list) => {
+          return (
+            <>
+            
+              <ListCard list={list} handleSetTask={handleSetTask}/>
+            </>
+          );
+        })}
+      </div>
     );
 };
 
 
-const ListsContainer = ({setTasksSection}) => {
+const ListsContainer = ({handleSetTask}) => {
     const lists = useSelector((state) => Object.values(state.lists));
     const dispatch = useDispatch();
 
@@ -29,7 +40,7 @@ const ListsContainer = ({setTasksSection}) => {
         <Lists
             lists={lists}
             getAllLists={() => dispatch(getAllLists())}
-            setTasksSection={setTasksSection}
+            handleSetTask={handleSetTask}
         />
     );
 };

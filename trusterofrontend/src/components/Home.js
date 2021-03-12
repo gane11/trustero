@@ -7,16 +7,31 @@ import Comments from './Comments';
 
 const Home = () => {
 
-    const [tasksSection, setTasksSection] = useState(undefined);
-    const [commentsSection, setCommentsSection] = useState(undefined);
+    const [tasksSection, setTasksSection] = useState(null);
+    const [commentsSection, setCommentsSection] = useState(null);
 
+    const handleSetTask = (list) => {
+        setCommentsSection(null)
+        setTasksSection(list)
+    }
+
+    const handleSetComment = (task) => {
+        setCommentsSection(task)
+    }
+    console.log(tasksSection)
+    console.log(commentsSection)
     return (
-        <>
-            <Lists setTasksSection={setTasksSection}/>
-            <Tasks tasksSection={tasksSection} setCommentsSection={setCommentsSection}/>
-            <Comments commentsSection={commentsSection}/>
-        </>
-    )
+      <>
+        <div className="home__container">
+          <Lists handleSetTask={(list) => handleSetTask(list)} />
+          <Tasks
+            tasksSection={tasksSection}
+            handleSetComment={(task) => handleSetComment(task)}
+          />
+          <Comments commentsSection={commentsSection} />
+        </div>
+      </>
+    );
 };
 
 

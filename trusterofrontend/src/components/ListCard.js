@@ -3,16 +3,18 @@ import './ListCard.css';
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const ListCard = ({list}) => {
+const ListCard = ({list, handleSetTask}) => {
 
-    return(
-        <div className="list-card">
-            <h2>{list.title}</h2>
-            <div className="list-buttons">
-                <EditIcon/>
-                <DeleteIcon/>
-            </div>
+
+
+    return (
+      <div className="list-card" onClick={()=> handleSetTask(list.id)}>
+        <h2>{list.title}</h2>
+        <div className="list-buttons">
+          <EditIcon color="primary" />
+          <DeleteIcon color="primary" />
         </div>
+      </div>
     );
 };
 

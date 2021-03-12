@@ -4,23 +4,25 @@ import './Lists.css';
 import TaskCard from './TaskCard';
 import {getAllTasks} from '../store/actions/taskActions';
 
-const Tasks = ({tasksSection,setCommentsSection, tasks, getAllTasks }) => {
+const Tasks = ({tasksSection, tasks, getAllTasks, handleSetComment }) => {
 
     useEffect(() => {
         getAllTasks();
     }, []);
-
     return(
-        <div>
+        <div className="tasks__container">
+            TASKS
             {tasks.map((task)=> {
-                <TaskCard task={task}/>
+                return (
+                    <TaskCard task={task} handleSetComment={handleSetComment}/>
+                )
             })}
         </div>
     );
 };
 
 
-const TaskContainer = ({setCommentsSection}) => {
+const TaskContainer = ({handleSetComment}) => {
     const tasks = useSelector((state) => Object.values(state.tasks));
     const dispatch = useDispatch();
 
@@ -28,7 +30,7 @@ const TaskContainer = ({setCommentsSection}) => {
         <Tasks
             tasks={tasks}
             getAllTasks={() => dispatch(getAllTasks())}
-            setCommentsSection={setCommentsSection}
+            handleSetComment={handleSetComment}
         />
     );
 };

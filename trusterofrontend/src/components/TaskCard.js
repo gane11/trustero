@@ -5,7 +5,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Checkbox from "@material-ui/core/Checkbox";
 
 
-const TaskCard = ({task}) => {
+const TaskCard = ({task, handleSetComment}) => {
     
     const [checked, setChecked] = useState(false);
 
@@ -15,7 +15,7 @@ const TaskCard = ({task}) => {
 
 
     return(
-        <div className="task-card">
+        <div className="task-card" onClick={() => handleSetComment(task.id)}>
             <Checkbox
             checked={checked}
             onChange={handleChange}
