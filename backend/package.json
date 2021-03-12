@@ -12,9 +12,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
-    "pg": "^8.5.1",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^6.5.0"
+    "pg": "^8.4.2",
+    "postgres": "^1.0.2",
+    "sequelize": "^5.22.3",
+    "per-env": "^1.0.2"
   },
   "devDependencies": {
     "dotenv-cli": "^4.0.0",
