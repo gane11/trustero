@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {check} = require('express-validator');
 
 const {asyncHandler, handleValidationErrors} = require('../utils');
-const db = requrie('../../db/models');
+const db = require('../../db/models');
 
 const {List} = db;
 
@@ -49,7 +49,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 router.put(
   "/:id(\\d+)",
   asyncHandler(async (req, res, next) => {
-    const id = req.params,id;
+    const id = req.params.id;
     const list = await List.findOne({
       where: {
         id

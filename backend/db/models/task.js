@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Task.associate = function(models) {
-    Task.belongsTo(model.List, {foreignKey: 'listId'})
+    Task.belongsTo(models.List, {foreignKey: 'listId'})
   };
   return Task;
 };

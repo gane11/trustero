@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { check } = require("express-validator");
 
 const { asyncHandler, handleValidationErrors } = require("../utils");
-const db = requrie("../../db/models");
+const db = require("../../db/models");
 
 const { Task } = db;
 
@@ -56,7 +56,7 @@ router.get(
 router.put(
   "/:id(\\d+)",
   asyncHandler(async (req, res, next) => {
-    const id = req.params,id;
+    const id = req.params.id;
     const task = await Task.findOne({
       where: {
         id
