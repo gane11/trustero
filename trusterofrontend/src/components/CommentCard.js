@@ -10,6 +10,7 @@ const CommentCard = ({ comment}) => {
       <div className="comment-buttons">
         <EditIcon color="primary" />
         <DeleteIcon color="primary" />
+        
       </div>
     </div>
   );

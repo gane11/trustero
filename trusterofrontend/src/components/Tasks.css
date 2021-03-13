@@ -1,3 +1,11 @@
 .tasks__container {
+   border-style: solid;
+  border-width: 10px;
+  width: 40rem;
+  height: 40rem;
+overflow: scroll;
+}
+
+.tasks {
     
 }

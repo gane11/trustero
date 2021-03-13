@@ -14,16 +14,18 @@ const TaskCard = ({task, handleSetComment}) => {
     };
 
 
-    return(
-        <div className="task-card" onClick={() => handleSetComment(task.id)}>
-            <Checkbox
-            checked={checked}
-            onChange={handleChange}
-            inputProps={{ 'aria-label': 'primary checkbox' }}
-            />
-            <h2>{task.title}</h2>
+    return (
+      <div className="task-card">
+        <Checkbox
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{ "aria-label": "primary checkbox" }}
+        />
+        <div className="task-main" onClick={() => handleSetComment(task.id)}>
+          <h2>{task.title}</h2>
         </div>
-    )
+      </div>
+    );
 };
 
 export default TaskCard;

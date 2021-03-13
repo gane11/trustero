@@ -1,6 +1,5 @@
 .task-card {
     display: flex;
-    justify-content: space-between;
     margin: 1rem;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -8,7 +7,14 @@
   transition: transform 100ms ease-in;
   cursor: pointer;
   color:#3f51b5;
-  width: 20rem;
+  width: 38rem;
   height: 4rem;
 }
 
+.task-main {
+    margin-left: 1rem;
+}
+
+.task-main:hover {
+    transform: scale(1.1);
+}

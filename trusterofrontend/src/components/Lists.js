@@ -12,18 +12,20 @@ const Lists = ({handleSetTask, getAllLists, lists}) => {
     }, []);
 
     const handleClick =() => {
-
+        console.log('HOLA')
     }
     return (
       <div className="lists__container">
         <Button variant="contained" color="primary" onClick={handleClick}>
-            ADD LIST
+          ADD LIST
         </Button>
+        <div className="list-card">
+          <h2 onClick={() => handleSetTask(null)}>All Tasks</h2>
+        </div>
         {lists.map((list) => {
           return (
             <>
-            
-              <ListCard list={list} handleSetTask={handleSetTask}/>
+              <ListCard list={list} handleSetTask={handleSetTask} />
             </>
           );
         })}

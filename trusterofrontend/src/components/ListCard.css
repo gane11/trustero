@@ -10,6 +10,7 @@
   color:#3f51b5;
   width: 20rem;
   height: 4rem;
+  z-index: 1;
 }
 
 .list-buttons {

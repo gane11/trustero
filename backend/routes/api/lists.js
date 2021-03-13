@@ -83,14 +83,14 @@ listValidations,
 
 
 router.delete('/:id', asyncHandler(async (req,res, next) => {
-    const listId = req.params.id;
+    const id = req.params.id;
 
     const list = await List.findOne({
         where: {id}
     });
     if (list) {
     await list.destroy();
-    res.json({ message: `Deleted list with id of ${listId}!` });
+    res.json({ message: `Deleted list with id of ${id}!` });
   } else {
     next(listNotFoundError(listId));
   }

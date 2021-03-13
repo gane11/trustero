@@ -1,3 +1,14 @@
 .list__container {
     
 }
+
+.list-title {
+    margin-left: 1rem;
+}
+.list-title:hover {
+    transform: scale(1.1);
+}
+
+.delete-icon:hover{
+    transform: scale(1.1);
+}
