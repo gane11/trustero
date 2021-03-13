@@ -103,12 +103,7 @@ export default function BuyModal({ party, user_id }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            {/* <h2 id="spring-modal-title">1015 Folsom</h2>
-                        <h4>10/20/2020</h4>
-                        <p>San Francisco</p>
-                        <p>Priec: Free </p>
-                        <Button variant="contained" color="primary">Buy</Button> */}
-            <BuyTicketForm
+            <CreateListForm
               party={party}
               user_id={user_id}
               partyStart={party.start_date}
