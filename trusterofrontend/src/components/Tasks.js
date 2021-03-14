@@ -12,7 +12,6 @@ const Tasks = ({tasksSection, tasks, getAllTasks, handleSetComment }) => {
         getAllTasks();
     }, []);
 
-      const handleClick = () => {};
 
     if(!tasksSection) {
         return (
@@ -21,7 +20,7 @@ const Tasks = ({tasksSection, tasks, getAllTasks, handleSetComment }) => {
               <h2 className="lists-header">TASKS</h2>
               {tasks.map((task) => {
                 return (
-                  <TaskCard task={task} handleSetComment={handleSetComment} />
+                  <TaskCard task={task} handleSetComment={handleSetComment} taskId={tasksSection}/>
                 );
               })}
             </div>

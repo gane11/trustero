@@ -1,8 +1,13 @@
 import {baseUrl} from '../../config';
 
 export const LOAD = 'LOAD';
-export const DELETE_LIST = 'DELETE_LIST'
-export const CREATE_LIST = 'CREATE_LIST'
+export const DELETE_LIST = 'DELETE_LIST';
+export const CREATE_LIST = 'CREATE_LIST';
+export const EDIT_LIST = 'EDIT_LIST';
+export const CLEAR_LISTS = "CLEAR_LISTS";
+export const clearAllLists = () => ({
+  type: CLEAR_LISTS,
+});
 
 export const load = (lists) => ({type: LOAD, lists});
 
@@ -59,4 +64,28 @@ export const createList = (list) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+
+
+export const editList = (list, id) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(`${baseUrl}/lists/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(list),
+      });
+      if (res.ok) {
+        const list = await res.json();
+        console.log(list)
+        dispatch({ type: EDIT_LIST, list });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };

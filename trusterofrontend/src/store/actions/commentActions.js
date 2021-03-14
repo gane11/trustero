@@ -76,11 +76,15 @@ export const editComment= (comment, id) => {
     try {
       const res = await fetch(`${baseUrl}/comments/${id}`, {
         method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify(comment),
       });
       if (res.ok) {
         const comment = await res.json();
-        dispatch({ type: EDIT_COMMENT});
+        dispatch({ type: EDIT_COMMENT, comment});
       }
     } catch (error) {
       console.log(error);

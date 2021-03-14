@@ -7,7 +7,11 @@ import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is requir
 import { Button } from "@material-ui/core";
 import { createList } from "../store/actions/listActions";
 import { useSelector, useDispatch } from "react-redux";
-import { clearAllLists } from "../store/reducers/listReducer";
+import {
+  clearAllLists,
+  editList,
+  getAllLists,
+} from "../store/actions/listActions";
 import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +68,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-export default function EditListModal({ getAllLists }) {
+export default function EditListModal({listId}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -76,13 +80,13 @@ export default function EditListModal({ getAllLists }) {
   };
 
   const handleSubmit = async (e) => {
-    //  e.preventDefault();
+     e.preventDefault();
     const payload = {
       title,
     };
-    await dispatch(createList(payload));
-    // dispatch(clearAllLists());
-    // getAllLists()
+    await dispatch(editList(payload,listId));
+    dispatch(clearAllLists());
+    dispatch(getAllLists());
   };
 
   const handleOpen = () => {

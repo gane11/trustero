@@ -43,6 +43,7 @@ const Comments = ({
     <div className="comments__container">
         <h1>Task Description</h1>
       <h2 className="task-description">{selectedTask.description}</h2>
+      <h1>Comments</h1>
       {comments.map((comment) => {
         if (comment.taskId == commentsSection) {
           return (

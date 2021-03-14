@@ -50,13 +50,14 @@ router.put(
   "/:id(\\d+)",
   asyncHandler(async (req, res, next) => {
     const id = req.params.id;
+    const {title} = req.body
     const list = await List.findOne({
       where: {
         id
       },
     });
     if (list) {
-      await list.update({ listTitle: req.body.editListTitle });
+      await list.update({ title});
       res.json({ list });
     } else {
       next(listNotFoundError(id));

@@ -68,13 +68,14 @@ router.put(
   "/:id(\\d+)",
   asyncHandler(async (req, res, next) => {
     const id = req.params.id;
+     const { title,description, listId } = req.body;
     const task = await Task.findOne({
       where: {
         id
       },
     });
     if (task) {
-      await Task.update({ taskTitle: req.body.editTaskTitle });
+      await task.update({ title, description, listId });
       res.json({ task });
     } else {
       next(taskNotFoundError(id));

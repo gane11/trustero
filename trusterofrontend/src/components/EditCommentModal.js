@@ -90,8 +90,8 @@ export default function EditCommentModal({ taskId, commentId }) {
       taskId,
     };
     await dispatch(editComment(payload, commentId));
-    // dispatch(clearAllLists());
-    // getAllLists()
+    dispatch(clearAllComments());
+    dispatch(getAllComments())
   };
 
   const handleOpen = () => {
@@ -104,18 +104,9 @@ export default function EditCommentModal({ taskId, commentId }) {
 
   return (
     <div>
-      {/* <Button
-        className={classes.shape}
-        size="large"
-        variant="contained"
-        color="primary"
-        type="button"
-        onClick={handleOpen}
-      >
-        ADD COMMENT
-      </Button> */}
-      <EditIcon color="primary"
-       onClick={handleOpen}/>
+      <EditIcon className="buttons" 
+      color="primary" 
+      onClick={handleOpen} />
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -142,7 +133,7 @@ export default function EditCommentModal({ taskId, commentId }) {
                 ></textarea>
               </div>
               <Button type="submit" variant="contained" color="primary">
-                COnfirm
+                Confirm
               </Button>
             </form>
           </div>

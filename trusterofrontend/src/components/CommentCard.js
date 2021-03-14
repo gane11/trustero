@@ -20,8 +20,8 @@ const CommentCard = ({ taskId,handleSetComment,comment, getAllComments, comments
     <div className="comment-card">
       <h2>{comment.description}</h2>
       <div className="comment-buttons">
-        <EditCommentModal taskId={taskId} commentId={comment.id}/>
-        <DeleteIcon color="primary" onClick={() => onDelete(comment.id)} />
+        <EditCommentModal  taskId={taskId} commentId={comment.id}/>
+        <DeleteIcon color="primary" className="buttons" onClick={() => onDelete(comment.id)} />
       </div>
     </div>
   );

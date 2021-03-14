@@ -5,8 +5,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {deleteList} from '../store/actions/listActions';
 import Button from "@material-ui/core/Button";
-import { getAllLists } from "../store/actions/listActions";
-import {clearAllLists} from "../store/reducers/listReducer";
+import { getAllLists, clearAllLists } from "../store/actions/listActions";
 import EditListModal from "./EditListModal";
 
 const ListCard = ({list, handleSetTask, getAllLists}) => {
@@ -27,7 +26,7 @@ const ListCard = ({list, handleSetTask, getAllLists}) => {
           <h2 className="list-title">{list.title}</h2>
         </div>
         <div className="list-buttons">
-          <EditListModal />
+          <EditListModal listId={list.id}/>
           <DeleteIcon
             variant="contained"
             color="primary"

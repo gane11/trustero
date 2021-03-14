@@ -1,5 +1,5 @@
 import merge from "lodash/merge";
-import { LOAD_TASKS, DELETE_TASK, CREATE_TASK, CLEAR_TASKS} from "../actions/taskActions";
+import { EDIT_TASK,LOAD_TASKS, DELETE_TASK, CREATE_TASK, CLEAR_TASKS} from "../actions/taskActions";
 
 export default function reducer(state = {}, action) {
   Object.freeze(state);
@@ -24,6 +24,11 @@ export default function reducer(state = {}, action) {
       let obj = state.tasks;
       obj[action.task.id] = action.task;
       return { ...state, tasks: obj };
+    }
+    case EDIT_TASK: {
+      let newState = { ...state };
+      newState[action.task.id] = action.task;
+      return newState;
     }
     default:
       return state;

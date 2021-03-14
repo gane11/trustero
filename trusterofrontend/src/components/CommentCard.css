@@ -16,3 +16,7 @@
     display: flex;
     margin-top: 1rem;
 }
+
+.buttons:hover {
+  transform: scale(1.1);
+}
