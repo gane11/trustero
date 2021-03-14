@@ -10,15 +10,18 @@ export default function reducer(state = {}, action) {
       return merge({}, state, ...comments);
     }
     case DELETE_COMMENT: {
-      delete state[action.id];
+      let obj = {};
+      Object.keys(state.comments).forEach((id) => {
+        if (parseInt(id) !== action.id) obj[id] = state.comments[id];
+      });
+      return { ...state, comments: obj };
     }
 
+
     case CREATE_COMMENT: {
-      return {
-        ...state,
-        id: action.id,
-        description: action.description
-      }
+      let obj = state.comments;
+      obj[action.comment.id] = action.comment;
+      return { ...state, comments: obj };
     }
     case EDIT_COMMENT: {
         let newState = { ...state };

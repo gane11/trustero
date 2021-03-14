@@ -11,19 +11,19 @@ export default function reducer(state = {}, action) {
     }
 
     case DELETE_TASK: {
-      delete state[action.id];
+      let obj = {};
+      Object.keys(state.tasks).forEach((id) => {
+        if (parseInt(id) !== action.id) obj[id] = state.tasks[id];
+      });
+      return { ...state, tasks: obj };
     }
     case CLEAR_TASKS: {
       return {};
     }
     case CREATE_TASK: {
-      return {
-        ...state,
-        id: action.id,
-        titel: action.title,
-        description: action.description,
-        isComplete: action.isComplete
-      };
+      let obj = state.tasks;
+      obj[action.task.id] = action.task;
+      return { ...state, tasks: obj };
     }
     default:
       return state;

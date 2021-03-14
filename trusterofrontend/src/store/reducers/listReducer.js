@@ -18,17 +18,19 @@ export default function reducer(state= {}, action) {
         }
 
         case DELETE_LIST: {
-            delete state[action.id]
+            let obj = {};
+            Object.keys(state.lists).forEach((id) => {
+              if (parseInt(id) !== action.id) obj[id] = state.lists[id];
+            });
+            return { ...state, lists: obj };
         }
         case CLEAR_LISTS: {
             return {}
         }
         case CREATE_LIST: {
-            return {
-                ...state,
-                id: action.id,
-                titel: action.title
-            }
+        let obj = state.lists;
+        obj[action.list.id] = action.list;
+        return { ...state, lists: obj };
         }
 
         default:

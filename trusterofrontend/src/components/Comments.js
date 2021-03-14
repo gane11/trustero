@@ -30,6 +30,9 @@ const Comments = ({
     getAllComments();
   }, []);
 
+  console.log(comments)
+  console.log(commentsSection)
+
   const handleClick = () => {};
 
   if (!commentsSection) {
@@ -41,7 +44,7 @@ const Comments = ({
         <h1>Task Description</h1>
       <h2 className="task-description">{selectedTask.description}</h2>
       {comments.map((comment) => {
-        if (2 == 2) {
+        if (comment.taskId == commentsSection) {
           return (
             <>
               <CommentCard

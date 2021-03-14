@@ -5,7 +5,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is required for IE 11 support
 import { Button } from "@material-ui/core";
-import { createComment } from "../store/actions/commentActions";
+import { createComment, getAllComments, clearAllComments } from "../store/actions/commentActions";
 import { useSelector, useDispatch } from "react-redux";
 import "./CreateCommentModal.css";
 
@@ -76,14 +76,14 @@ export default function CreateCommentModal({ taskId }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     const payload = {
       description,
       taskId
     };
     await dispatch(createComment(payload));
-    // dispatch(clearAllLists());
-    // getAllLists()
+    setOpen(false)
+    dispatch(clearAllComments());
+    dispatch(getAllComments())
   };
 
   const handleOpen = () => {
@@ -120,7 +120,7 @@ export default function CreateCommentModal({ taskId }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}> */}
               <h2>Add Comment</h2>
               <div>
                 <textarea 
@@ -131,10 +131,10 @@ export default function CreateCommentModal({ taskId }) {
                 className="comment-textarea"
                 ></textarea>
               </div>
-              <Button type="submit" variant="contained" color="primary">
+              <Button onClick={()=>{handleSubmit()}} variant="contained" color="primary">
                 ADD
               </Button>
-            </form>
+            {/* </form> */}
           </div>
         </Fade>
       </Modal>

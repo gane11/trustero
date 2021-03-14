@@ -13,7 +13,7 @@ const CommentCard = ({ taskId,handleSetComment,comment, getAllComments, comments
     await dispatch(deleteComment(id));
     dispatch(clearAllComments());
     getAllComments();
-    handleSetComment(null)
+    // handleSetComment(comment.taskId)
   };
 
   return (
