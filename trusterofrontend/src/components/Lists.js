@@ -25,7 +25,6 @@ const Lists = ({handleSetTask, getAllLists, lists}) => {
             <h2 onClick={() => handleSetTask(null)} >All Tasks</h2>
           </div>
           {lists.map((list) => {
-            console.log(list.title);
             return (
               <>
                 <ListCard list={list} handleSetTask={handleSetTask} />

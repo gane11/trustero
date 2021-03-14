@@ -5,9 +5,8 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is required for IE 11 support
 import { Button } from "@material-ui/core";
-import { createTask } from "../store/actions/taskActions";
+import { createTask, getAllTasks, clearAllTasks } from "../store/actions/taskActions";
 import { useSelector, useDispatch } from "react-redux";
-import { clearAllLists } from "../store/reducers/listReducer";
 import "./CreateTaskModal.css"
 
 const useStyles = makeStyles((theme) => ({
@@ -83,15 +82,16 @@ export default function CreateTaskModal({ listId}) {
 
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault()
     const payload = {
       title,
       description,
       listId
     };
     await dispatch(createTask(payload));
-    // dispatch(clearAllLists());
-    // getAllLists()
+    dispatch(clearAllTasks());
+    dispatch(getAllTasks());
+    setOpen(false)
   };
 
   const handleOpen = () => {

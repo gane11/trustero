@@ -13,22 +13,24 @@ const TaskCard = ({listId,task, handleSetComment, getAllTasks, tasks}) => {
 
     const handleChange = async (id) => {
       await dispatch(deleteTask(id));
+      handleSetComment(null);
       dispatch(clearAllTasks());
       getAllTasks();
-      handleSetComment(null)
     };
 
 
 
     return (
       <div className="task-card">
-        <Checkbox
-        color="primary"
-          checked={checked}
-          onChange={()=>handleChange(task.id)}
-          inputProps={{ "aria-label": "primary checkbox" }}
-        />
-        <EditTaskModal taskId={id} listId={listId}/>
+        <div className="task-buttons">
+          <Checkbox
+          color="primary"
+            checked={checked}
+            onChange={()=>handleChange(task.id)}
+            inputProps={{ "aria-label": "primary checkbox" }}
+          />
+          <EditTaskModal handleSetComment={handleSetComment} taskId={id} listId={listId}/>
+        </div>
         <div className="task-main" onClick={() => handleSetComment(task.id)}>
           <h2>{task.title}</h2>
         </div>

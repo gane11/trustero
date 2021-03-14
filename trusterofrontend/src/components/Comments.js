@@ -4,7 +4,6 @@ import CommentCard from './CommentCard';
 import {getAllComments} from '../store/actions/commentActions';
 import {getAllTasks} from '../store/actions/taskActions';
 import './Comments.css';
-import Button from "@material-ui/core/Button";
 import CreateCommentModal from './CreateCommentModal';
 
 const Comments = ({
@@ -30,10 +29,7 @@ const Comments = ({
     getAllComments();
   }, []);
 
-  console.log(comments)
-  console.log(commentsSection)
 
-  const handleClick = () => {};
 
   if (!commentsSection) {
     return null;

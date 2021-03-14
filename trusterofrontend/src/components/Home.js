@@ -26,6 +26,7 @@ const Home = () => {
           <Tasks
             tasksSection={tasksSection}
             handleSetComment={(task) => handleSetComment(task)}
+            
           />
           <Comments
             handleSetComment={(task) => handleSetComment(task)}

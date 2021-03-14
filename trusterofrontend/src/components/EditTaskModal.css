@@ -1,0 +1,7 @@
+.edit-task__button {
+    margin-top: 1.2rem;
+}
+
+.edit-task__button:hover{
+    transform: scale(1.1);
+}

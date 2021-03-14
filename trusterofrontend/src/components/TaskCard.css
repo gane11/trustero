@@ -18,3 +18,7 @@
 .task-main:hover {
     transform: scale(1.1);
 }
+
+.task-buttons {
+    display: flex;
+}

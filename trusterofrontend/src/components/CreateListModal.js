@@ -5,9 +5,9 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is required for IE 11 support
 import { Button } from "@material-ui/core";
-import { createList } from "../store/actions/listActions";
-import { useSelector, useDispatch } from "react-redux";
-import { clearAllLists } from "../store/reducers/listReducer";
+import { createList, getAllLists, clearAllLists } from "../store/actions/listActions";
+import { useDispatch } from "react-redux";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -65,7 +65,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-export default function CreateListModal({ getAllLists}) {
+export default function CreateListModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -78,13 +78,14 @@ export default function CreateListModal({ getAllLists}) {
   }
 
   const handleSubmit = async (e) => {
-        //  e.preventDefault();
+         e.preventDefault();
         const payload = {
             title
         }
         await dispatch(createList(payload))
-        // dispatch(clearAllLists());
-        // getAllLists()
+        dispatch(clearAllLists());
+        dispatch(getAllLists())
+        setOpen(false)
 
   }
 
@@ -124,14 +125,18 @@ export default function CreateListModal({ getAllLists}) {
           <div className={classes.paper}>
             <form onSubmit={handleSubmit}>
               <h2>Add a list</h2>
-              <input
-                onChange={updateTitle}
-                className="list-input"
-                maxlength="20"
-              ></input>
-              <Button type="submit" variant="contained" color="primary">
-                ADD
-              </Button>
+              <div>
+                <input
+                  onChange={updateTitle}
+                  className="list-input"
+                  maxlength="20"
+                ></input>
+              </div>
+              <div>
+                <Button type="submit" variant="contained" color="primary">
+                  ADD
+                </Button>
+              </div>
             </form>
           </div>
         </Fade>

@@ -1,16 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import './ListCard.css';
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {deleteList} from '../store/actions/listActions';
-import Button from "@material-ui/core/Button";
 import { getAllLists, clearAllLists } from "../store/actions/listActions";
 import EditListModal from "./EditListModal";
 
 const ListCard = ({list, handleSetTask, getAllLists}) => {
     const dispatch = useDispatch();
-
+    // const [selected, setSelected] = useState(false)
+    
+    const handleClick = () => {
+      handleSetTask(list.id);
+      // setSelected(true)
+    }
+ 
     
      const onDelete = async (id) => {
         await dispatch(deleteList(id));
@@ -22,11 +26,20 @@ const ListCard = ({list, handleSetTask, getAllLists}) => {
 
     return (
       <div className="list-card">
-        <div className="list-main" onClick={() => handleSetTask(list.id)}>
+        {/* {selected ? (
+          <div className="list-main" onClick={handleClick}>
+            <h2 className="list-title__selected">{list.title}</h2>
+          </div>
+        ) : (
+          <div className="list-main" onClick={handleClick}>
+            <h2 className="list-title">{list.title}</h2>
+          </div>
+        )} */}
+        <div className="list-main" onClick={handleClick}>
           <h2 className="list-title">{list.title}</h2>
         </div>
         <div className="list-buttons">
-          <EditListModal listId={list.id}/>
+          <EditListModal listId={list.id} />
           <DeleteIcon
             variant="contained"
             color="primary"

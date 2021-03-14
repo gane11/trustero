@@ -3,7 +3,6 @@ import {useSelector, useDispatch} from 'react-redux';
 import './Tasks.css';
 import TaskCard from './TaskCard';
 import {getAllTasks} from '../store/actions/taskActions';
-import Button from "@material-ui/core/Button";
 import CreateTaskModal from './CreateTaskModal'
 
 const Tasks = ({tasksSection, tasks, getAllTasks, handleSetComment }) => {
@@ -17,7 +16,7 @@ const Tasks = ({tasksSection, tasks, getAllTasks, handleSetComment }) => {
         return (
           <>
             <div className="tasks__container">
-              <h2 className="lists-header">TASKS</h2>
+              <h2 className="lists-header">ALL TASKS</h2>
               {tasks.map((task) => {
                 return (
                   <TaskCard task={task} handleSetComment={handleSetComment} taskId={tasksSection}/>

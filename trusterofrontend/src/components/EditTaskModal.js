@@ -7,7 +7,7 @@ import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is requir
 import { Button } from "@material-ui/core";
 import { createComment } from "../store/actions/commentActions";
 import { useSelector, useDispatch } from "react-redux";
-import "./CreateCommentModal.css";
+import "./EditTaskModal.css";
 import EditIcon from "@material-ui/icons/Edit";
 import {
   clearAllTasks,
@@ -69,7 +69,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-export default function EditTaskModal({ taskId, listId }) {
+export default function EditTaskModal({ taskId, listId, handleSetComment }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -95,6 +95,7 @@ export default function EditTaskModal({ taskId, listId }) {
     await dispatch(editTask(payload, taskId));
     dispatch(clearAllTasks());
     dispatch(getAllTasks());
+    handleSetComment(null)
   };
 
   const handleOpen = () => {
@@ -107,7 +108,7 @@ export default function EditTaskModal({ taskId, listId }) {
 
   return (
     <div>
-      <EditIcon className="buttons" color="primary" onClick={handleOpen} />
+      <EditIcon className="edit-task__button" color="primary" onClick={handleOpen} />
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
