@@ -44,7 +44,11 @@ const Comments = ({
         if (2 == 2) {
           return (
             <>
-              <CommentCard comment={comment} handleSetComment={handleSetComment} />
+              <CommentCard
+                taskId={commentsSection}
+                comment={comment}
+                handleSetComment={handleSetComment}
+              />
             </>
           );
         }

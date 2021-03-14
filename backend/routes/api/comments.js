@@ -65,13 +65,14 @@ router.put(
   "/:id(\\d+)",
   asyncHandler(async (req, res, next) => {
     const id = req.params.id;
+    const { description, taskId } = req.body;
     const comment = await Comment.findOne({
       where: {
         id
       },
     });
     if (comment) {
-      await Comment.update({ commentDescription: req.body.editComment});
+      await comment.update({ description, taskId});
       res.json({ comment });
     } else {
       next(taskNotFoundError(id));

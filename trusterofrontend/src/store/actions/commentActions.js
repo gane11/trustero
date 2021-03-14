@@ -4,6 +4,7 @@ export const LOAD_COMMENTS = 'LOAD_COMMENTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
 
 export const clearAllComments = () => (
     {
@@ -67,4 +68,22 @@ export const createComment = (comment) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+
+export const editComment= (comment, id) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(`${baseUrl}/comments/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(comment),
+      });
+      if (res.ok) {
+        const comment = await res.json();
+        dispatch({ type: EDIT_COMMENT});
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };

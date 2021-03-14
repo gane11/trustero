@@ -1,13 +1,12 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./CommentCard.css";
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {deleteComment, clearAllComments, getAllComments} from "../store/actions/commentActions"
+import EditCommentModal from './EditCommentModal';
 
 
-
-const CommentCard = ({ handleSetComment,comment, getAllComments, comments }) => {
+const CommentCard = ({ taskId,handleSetComment,comment, getAllComments, comments }) => {
   const dispatch = useDispatch();
 
   const onDelete = async (id) => {
@@ -21,7 +20,7 @@ const CommentCard = ({ handleSetComment,comment, getAllComments, comments }) => 
     <div className="comment-card">
       <h2>{comment.description}</h2>
       <div className="comment-buttons">
-        <EditIcon color="primary" />
+        <EditCommentModal taskId={taskId} commentId={comment.id}/>
         <DeleteIcon color="primary" onClick={() => onDelete(comment.id)} />
       </div>
     </div>
@@ -29,12 +28,13 @@ const CommentCard = ({ handleSetComment,comment, getAllComments, comments }) => 
 };
 
 
-const CommentCardContainer = ({comment, handleSetComment}) => {
+const CommentCardContainer = ({comment, handleSetComment, taskId}) => {
    const comments = useSelector((state) => Object.values(state.comments));
 
     const dispatch = useDispatch();
   return (
     <CommentCard
+    taskId={taskId}
       comment={comment}
       comments={comments}
       getAllComments={() => dispatch(getAllComments())}
