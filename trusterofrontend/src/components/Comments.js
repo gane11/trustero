@@ -5,6 +5,7 @@ import {getAllComments} from '../store/actions/commentActions';
 import {getAllTasks} from '../store/actions/taskActions';
 import './Lists.css';
 import Button from "@material-ui/core/Button";
+import CreateCommentModal from './CreateCommentModal';
 
 const Comments = ({commentsSection, getAllComments, comments, getAllTasks, tasks}) => {
 
@@ -33,9 +34,7 @@ const Comments = ({commentsSection, getAllComments, comments, getAllTasks, tasks
             );
           }
         })}
-        <Button variant="contained" color="primary" onClick={handleClick}>
-          ADD Comment
-        </Button>
+        <CreateCommentModal taskId={commentsSection}/>
       </div>
     );
 };

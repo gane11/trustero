@@ -83,10 +83,11 @@ router.post(
   "/",
   commentValidations,
   asyncHandler(async (req, res) => {
-    const { description } = req.body;
+    const { description, taskId } = req.body;
 
     let comment = await Comment.create({
       description,
+      taskId
     });
 
     comment = await Comment.findOne({
