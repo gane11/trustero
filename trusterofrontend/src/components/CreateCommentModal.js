@@ -7,6 +7,7 @@ import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is requir
 import { Button } from "@material-ui/core";
 import { createComment } from "../store/actions/commentActions";
 import { useSelector, useDispatch } from "react-redux";
+import "./CreateCommentModal.css";
 
 const useStyles = makeStyles((theme) => ({
   shape: {
@@ -120,7 +121,16 @@ export default function CreateCommentModal({ taskId }) {
         <Fade in={open}>
           <div className={classes.paper}>
             <form onSubmit={handleSubmit}>
-              <textarea onChange={updateDescription}></textarea>
+              <h2>Add Comment</h2>
+              <div>
+                <textarea 
+                onChange={updateDescription}
+                 cols="17"
+                  rows="5"
+                  maxlength="150"
+                className="comment-textarea"
+                ></textarea>
+              </div>
               <Button type="submit" variant="contained" color="primary">
                 ADD
               </Button>

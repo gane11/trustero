@@ -19,7 +19,7 @@ const Navbar = () => {
 
                 </div>
                 <div className="navbar-right">
-
+                    <h1>Todos List</h1>
                 </div>
             </div>
         )

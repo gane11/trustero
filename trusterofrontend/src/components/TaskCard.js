@@ -23,6 +23,7 @@ const TaskCard = ({task, handleSetComment, getAllTasks, tasks}) => {
     return (
       <div className="task-card">
         <Checkbox
+        color="primary"
           checked={checked}
           onChange={()=>handleChange(task.id)}
           inputProps={{ "aria-label": "primary checkbox" }}

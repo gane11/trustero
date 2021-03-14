@@ -1,6 +1,5 @@
 .tasks__container {
-   border-style: solid;
-  border-width: 10px;
+  margin-top: 4.5rem;
   width: 40rem;
   height: 40rem;
 overflow: scroll;

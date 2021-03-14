@@ -15,24 +15,26 @@ const Tasks = ({tasksSection, tasks, getAllTasks, handleSetComment }) => {
       const handleClick = () => {};
 
     if(!tasksSection) {
-        return(
-            <>
-            <h2 className="tasks">TASKS</h2>
+        return (
+          <>
             <div className="tasks__container">
-                {tasks.map((task)=> {
-                    return (
-                        <TaskCard task={task} handleSetComment={handleSetComment}/>
-                    )
-                })}
+              <h2 className="lists-header">TASKS</h2>
+              {tasks.map((task) => {
+                return (
+                  <TaskCard task={task} handleSetComment={handleSetComment} />
+                );
+              })}
             </div>
-            </>
+          </>
         );
     };
 
     return (
       <div className="tasks__container">
-        TASKS
-        <CreateTaskModal listId={tasksSection}/>
+        <h2 className="lists-header">TASKS</h2>
+        <div className="add-list__button">
+            <CreateTaskModal listId={tasksSection} />
+        </div>
         {tasks.map((task) => {
           if (task.listId == tasksSection) {
             return <TaskCard task={task} handleSetComment={handleSetComment} />;

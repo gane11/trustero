@@ -106,14 +106,12 @@ router.delete(
     const id = req.params.id;
 
     const comment = await Comment.findOne({
-      where: { 
-          id 
-        },
+      where: { id },
     });
 
 
     if (comment) {
-    await Comment.destroy();
+    await comment.destroy();
     res.json({ message: `Deleted Comment with id of ${id}!` });
   } else {
     next(commentNotFoundError(id));

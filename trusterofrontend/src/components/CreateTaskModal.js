@@ -8,6 +8,7 @@ import { Button } from "@material-ui/core";
 import { createTask } from "../store/actions/taskActions";
 import { useSelector, useDispatch } from "react-redux";
 import { clearAllLists } from "../store/reducers/listReducer";
+import "./CreateTaskModal.css"
 
 const useStyles = makeStyles((theme) => ({
   shape: {
@@ -82,7 +83,7 @@ export default function CreateTaskModal({ listId}) {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const payload = {
       title,
       description,
@@ -128,8 +129,21 @@ export default function CreateTaskModal({ listId}) {
         <Fade in={open}>
           <div className={classes.paper}>
             <form onSubmit={handleSubmit}>
-              <input onChange={updateTitle}></input>
-              <textarea onChange={updateDescription}></textarea>
+              <h2>Add a Task</h2>
+              <div>
+                <h3>Name</h3>
+                <input onChange={updateTitle} maxLength="20"></input>
+              </div>
+              <div>
+                <h3>Description</h3>
+                <textarea
+                  onChange={updateDescription}
+                  className="task-textarea"
+                  cols="17"
+                  rows="5"
+                  maxlength="150"
+                ></textarea>
+              </div>
               <Button type="submit" variant="contained" color="primary">
                 ADD
               </Button>

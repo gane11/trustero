@@ -78,7 +78,7 @@ export default function CreateListModal({ getAllLists}) {
   }
 
   const handleSubmit = async (e) => {
-         e.preventDefault();
+        //  e.preventDefault();
         const payload = {
             title
         }
@@ -123,12 +123,13 @@ export default function CreateListModal({ getAllLists}) {
         <Fade in={open}>
           <div className={classes.paper}>
             <form onSubmit={handleSubmit}>
-              <input onChange={updateTitle}></input>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-              >
+              <h2>Add a list</h2>
+              <input
+                onChange={updateTitle}
+                className="list-input"
+                maxlength="20"
+              ></input>
+              <Button type="submit" variant="contained" color="primary">
                 ADD
               </Button>
             </form>

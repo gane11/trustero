@@ -7,14 +7,12 @@ import {deleteList} from '../store/actions/listActions';
 import Button from "@material-ui/core/Button";
 import { getAllLists } from "../store/actions/listActions";
 import {clearAllLists} from "../store/reducers/listReducer";
+import EditListModal from "./EditListModal";
 
 const ListCard = ({list, handleSetTask, getAllLists}) => {
     const dispatch = useDispatch();
 
     
-    // useEffect(() => {
-    //   getAllLists();
-    // }, []);
      const onDelete = async (id) => {
         await dispatch(deleteList(id));
         dispatch(clearAllLists());
@@ -29,8 +27,7 @@ const ListCard = ({list, handleSetTask, getAllLists}) => {
           <h2 className="list-title">{list.title}</h2>
         </div>
         <div className="list-buttons">
-          <EditIcon color="primary" className="delete-icon" />
-          {/* <DeleteIcon color="primary" onClikc={() => handleDelete(list)} /> */}
+          <EditListModal />
           <DeleteIcon
             variant="contained"
             color="primary"

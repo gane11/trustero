@@ -18,8 +18,7 @@ const Home = () => {
     const handleSetComment = (task) => {
         setCommentsSection(task)
     }
-    console.log(tasksSection)
-    console.log(commentsSection)
+
     return (
       <>
         <div className="home__container">
@@ -28,7 +27,10 @@ const Home = () => {
             tasksSection={tasksSection}
             handleSetComment={(task) => handleSetComment(task)}
           />
-          <Comments commentsSection={commentsSection} />
+          <Comments
+            handleSetComment={(task) => handleSetComment(task)}
+            commentsSection={commentsSection}
+          />
         </div>
       </>
     );
