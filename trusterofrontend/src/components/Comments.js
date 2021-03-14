@@ -20,9 +20,10 @@ const Comments = ({commentsSection, getAllComments, comments, getAllTasks, tasks
     if(!commentsSection) {
         return null
     }
+
     return (
       <div className="comments__container">
-          <h2>{tasks[commentsSection].description}</h2>
+          <h2>{tasks[commentsSection - 1].description}</h2>
         {comments.map((comment) => {
           if (comment.taskId == commentsSection) {
             return (

@@ -12,9 +12,9 @@ const ListCard = ({list, handleSetTask, getAllLists}) => {
     const dispatch = useDispatch();
 
     
-    useEffect(() => {
-      getAllLists();
-    }, []);
+    // useEffect(() => {
+    //   getAllLists();
+    // }, []);
      const onDelete = async (id) => {
         await dispatch(deleteList(id));
         dispatch(clearAllLists());

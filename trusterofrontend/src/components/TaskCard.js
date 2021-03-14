@@ -1,24 +1,30 @@
 import React, {useState}from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import './TaskCard.css';
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
 import Checkbox from "@material-ui/core/Checkbox";
+import {deleteTask, getAllTasks, clearAllTasks} from '../store/actions/taskActions'
 
 
-const TaskCard = ({task, handleSetComment}) => {
-    
+
+const TaskCard = ({task, handleSetComment, getAllTasks, tasks}) => {
+    const dispatch = useDispatch()
     const [checked, setChecked] = useState(false);
+    const id = task.id
 
-    const handleChange = (event) => {
-      setChecked(event.target.checked);
+    const handleChange = async (id) => {
+      await dispatch(deleteTask(id));
+      dispatch(clearAllTasks());
+      getAllTasks();
+      handleSetComment(null)
     };
+
 
 
     return (
       <div className="task-card">
         <Checkbox
           checked={checked}
-          onChange={handleChange}
+          onChange={()=>handleChange(task.id)}
           inputProps={{ "aria-label": "primary checkbox" }}
         />
         <div className="task-main" onClick={() => handleSetComment(task.id)}>
@@ -28,4 +34,17 @@ const TaskCard = ({task, handleSetComment}) => {
     );
 };
 
-export default TaskCard;
+const TaskCardContainer = ({task, handleSetComment}) => {
+    const tasks = useSelector((state) => Object.values(state.tasks));
+    const dispatch = useDispatch();
+    return (
+        <TaskCard
+            tasks={tasks}
+            getAllTasks={()=> dispatch(getAllTasks())}
+            task={task}
+            handleSetComment={handleSetComment}
+        />
+    )
+}
+
+export default TaskCardContainer;

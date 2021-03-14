@@ -2,6 +2,7 @@ import {baseUrl} from '../../config';
 
 export const LOAD = 'LOAD';
 export const DELETE_LIST = 'DELETE_LIST'
+export const CREATE_LIST = 'CREATE_LIST'
 
 export const load = (lists) => ({type: LOAD, lists});
 
@@ -36,4 +37,26 @@ export const deleteList = (id) => {
       console.log(e);
     }
   };
+};
+
+export const createList = (list) => async (dispatch) => {
+  try {
+    const res = await fetch(`${baseUrl}/lists`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(list),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      dispatch({
+        type: CREATE_LIST,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };

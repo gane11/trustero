@@ -89,11 +89,13 @@ router.post(
     const { 
         title,
         description,
+        listId
      } = req.body;
 
-    let task = await task.create({
+    let task = await Task.create({
         title,
-        description
+        description,
+        listId
      });
 
     task = await Task.findOne({
@@ -109,17 +111,17 @@ router.post(
 router.delete(
   "/:id",
   asyncHandler(async (req, res, next) => {
-    const taskId = req.params.id;
+    const id = req.params.id;
 
     const task = await Task.findOne({
       where: { id },
     });
 
     if (task) {
-    await Task.destroy();
-    res.json({ message: `Deleted Task with id of ${taskId}!` });
+    await task.destroy();
+    res.json({ message: `Deleted Task with id of ${id}!` });
   } else {
-    next(taskNotFoundError(taskId));
+    next(taskNotFoundError(id));
   };
 
   }));

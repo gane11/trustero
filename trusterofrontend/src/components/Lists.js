@@ -4,6 +4,7 @@ import './Lists.css';
 import ListCard from './ListCard';
 import {getAllLists} from '../store/actions/listActions';
 import Button from "@material-ui/core/Button";
+import CreateListModal from './CreateListModal'
 
 const Lists = ({handleSetTask, getAllLists, lists}) => {
 
@@ -11,14 +12,10 @@ const Lists = ({handleSetTask, getAllLists, lists}) => {
         getAllLists();
     }, []);
 
-    const handleClick =() => {
-        console.log('HOLA')
-    }
+
     return (
       <div className="lists__container">
-        <Button variant="contained" color="primary" onClick={handleClick}>
-          ADD LIST
-        </Button>
+        <CreateListModal getAllLists={getAllLists}/>
         <div className="list-card">
           <h2 onClick={() => handleSetTask(null)}>All Tasks</h2>
         </div>

@@ -4,6 +4,7 @@ import './Tasks.css';
 import TaskCard from './TaskCard';
 import {getAllTasks} from '../store/actions/taskActions';
 import Button from "@material-ui/core/Button";
+import CreateTaskModal from './CreateTaskModal'
 
 const Tasks = ({tasksSection, tasks, getAllTasks, handleSetComment }) => {
 
@@ -31,9 +32,7 @@ const Tasks = ({tasksSection, tasks, getAllTasks, handleSetComment }) => {
     return (
       <div className="tasks__container">
         TASKS
-        <Button variant="contained" color="primary" onClick={handleClick}>
-          ADD TASK
-        </Button>
+        <CreateTaskModal listId={tasksSection}/>
         {tasks.map((task) => {
           if (task.listId == tasksSection) {
             return <TaskCard task={task} handleSetComment={handleSetComment} />;

@@ -5,10 +5,9 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is required for IE 11 support
 import { Button } from "@material-ui/core";
-import { createList } from "../store/actions/listActions";
+import { createTask } from "../store/actions/taskActions";
 import { useSelector, useDispatch } from "react-redux";
 import { clearAllLists } from "../store/reducers/listReducer";
-
 
 const useStyles = makeStyles((theme) => ({
   shape: {
@@ -18,12 +17,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: '2rem',
-    '&:focus': {
-        outline: "none",
-        borderColor: 'blue',
-        boxShadow: 'none'
-
+    borderRadius: "2rem",
+    "&:focus": {
+      outline: "none",
+      borderColor: "blue",
+      boxShadow: "none",
     },
   },
   paper: {
@@ -65,28 +63,35 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-export default function CreateListModal({ getAllLists}) {
+export default function CreateTaskModal({ listId}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
 
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("")
 
-  const [title, setTitle] = useState('');
 
   const updateTitle = (e) => {
-      setTitle(e.target.value)
-  }
+    setTitle(e.target.value);
+  };
+
+   const updateDescription = (e) => {
+     setDescription(e.target.value);
+   };
+
 
   const handleSubmit = async (e) => {
-         e.preventDefault();
-        const payload = {
-            title
-        }
-        await dispatch(createList(payload))
-        // dispatch(clearAllLists());
-        // getAllLists()
-
-  }
+    e.preventDefault();
+    const payload = {
+      title,
+      description,
+      listId
+    };
+    await dispatch(createTask(payload));
+    // dispatch(clearAllLists());
+    // getAllLists()
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -106,7 +111,7 @@ export default function CreateListModal({ getAllLists}) {
         type="button"
         onClick={handleOpen}
       >
-        ADD LIST
+        ADD TASK
       </Button>
       <Modal
         aria-labelledby="spring-modal-title"
@@ -124,11 +129,8 @@ export default function CreateListModal({ getAllLists}) {
           <div className={classes.paper}>
             <form onSubmit={handleSubmit}>
               <input onChange={updateTitle}></input>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-              >
+              <textarea onChange={updateDescription}></textarea>
+              <Button type="submit" variant="contained" color="primary">
                 ADD
               </Button>
             </form>
@@ -138,5 +140,3 @@ export default function CreateListModal({ getAllLists}) {
     </div>
   );
 }
-
-

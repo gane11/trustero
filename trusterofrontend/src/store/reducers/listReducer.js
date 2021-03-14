@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import {LOAD, DELETE_LIST} from '../actions/listActions';
+import {LOAD, DELETE_LIST, CREATE_LIST} from '../actions/listActions';
 
 const CLEAR_LISTS = "CLEAR_LISTS";
 
@@ -22,6 +22,13 @@ export default function reducer(state= {}, action) {
         }
         case CLEAR_LISTS: {
             return {}
+        }
+        case CREATE_LIST: {
+            return {
+                ...state,
+                id: action.id,
+                titel: action.title
+            }
         }
 
         default:
