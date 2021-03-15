@@ -1,3 +1,5 @@
+![Main image](https://github.com/gane11/trustero/blob/main/trusterofrontend/src/components/images/trusteroGif.gif)
+
 ## Technologies Used
 1. Express
 2. SQL
