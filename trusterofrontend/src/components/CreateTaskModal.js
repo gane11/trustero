@@ -132,11 +132,12 @@ export default function CreateTaskModal({ listId}) {
               <h2>Add a Task</h2>
               <div>
                 <h3>Name</h3>
-                <input onChange={updateTitle} maxLength="20"></input>
+                <input required onChange={updateTitle} maxLength="20"></input>
               </div>
               <div>
                 <h3>Description</h3>
                 <textarea
+                  required
                   onChange={updateDescription}
                   className="task-textarea"
                   cols="17"

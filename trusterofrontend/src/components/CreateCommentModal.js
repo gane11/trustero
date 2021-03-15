@@ -121,19 +121,26 @@ export default function CreateCommentModal({ taskId }) {
         <Fade in={open}>
           <div className={classes.paper}>
             {/* <form onSubmit={handleSubmit}> */}
-              <h2>Add Comment</h2>
-              <div>
-                <textarea 
+            <h2>Add Comment</h2>
+            <div>
+              <textarea
+                required
                 onChange={updateDescription}
-                 cols="17"
-                  rows="5"
-                  maxlength="150"
+                cols="17"
+                rows="5"
+                maxlength="150"
                 className="comment-textarea"
-                ></textarea>
-              </div>
-              <Button onClick={()=>{handleSubmit()}} variant="contained" color="primary">
-                ADD
-              </Button>
+              ></textarea>
+            </div>
+            <Button
+              onClick={() => {
+                handleSubmit();
+              }}
+              variant="contained"
+              color="primary"
+            >
+              ADD
+            </Button>
             {/* </form> */}
           </div>
         </Fade>

@@ -108,7 +108,11 @@ export default function EditTaskModal({ taskId, listId, handleSetComment }) {
 
   return (
     <div>
-      <EditIcon className="edit-task__button" color="primary" onClick={handleOpen} />
+      <EditIcon
+        className="edit-task__button"
+        color="primary"
+        onClick={handleOpen}
+      />
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -128,6 +132,7 @@ export default function EditTaskModal({ taskId, listId, handleSetComment }) {
               <div>
                 <h3>Name</h3>
                 <input
+                  required
                   onChange={updateTitle}
                   className="list-input"
                   maxlength="20"
@@ -136,6 +141,7 @@ export default function EditTaskModal({ taskId, listId, handleSetComment }) {
               <div>
                 <h3>Description</h3>
                 <textarea
+                  required
                   onChange={updateDescription}
                   cols="17"
                   rows="5"

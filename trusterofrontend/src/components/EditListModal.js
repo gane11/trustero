@@ -117,16 +117,17 @@ export default function EditListModal({listId}) {
             <form onSubmit={handleSubmit}>
               <h2>Edit a List</h2>
               <div>
-                  <h3>Name</h3>
+                <h3>Name</h3>
                 <input
-                    onChange={updateTitle}
-                    className="list-input"
-                    maxlength="20"
+                  required
+                  onChange={updateTitle}
+                  className="list-input"
+                  maxlength="20"
                 ></input>
               </div>
               <div className="edit-list__button">
                 <Button type="submit" variant="contained" color="primary">
-                    Confirm
+                  Confirm
                 </Button>
               </div>
             </form>

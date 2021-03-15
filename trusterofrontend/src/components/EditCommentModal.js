@@ -104,9 +104,7 @@ export default function EditCommentModal({ taskId, commentId }) {
 
   return (
     <div>
-      <EditIcon className="buttons" 
-      color="primary" 
-      onClick={handleOpen} />
+      <EditIcon className="buttons" color="primary" onClick={handleOpen} />
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -125,6 +123,7 @@ export default function EditCommentModal({ taskId, commentId }) {
               <h2>Edit Comment</h2>
               <div>
                 <textarea
+                  required
                   onChange={updateDescription}
                   cols="17"
                   rows="5"

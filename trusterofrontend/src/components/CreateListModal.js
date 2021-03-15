@@ -127,6 +127,7 @@ export default function CreateListModal() {
               <h2>Add a list</h2>
               <div>
                 <input
+                  required
                   onChange={updateTitle}
                   className="list-input"
                   maxlength="20"
