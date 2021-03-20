@@ -26,15 +26,7 @@ const ListCard = ({list, handleSetTask, getAllLists}) => {
 
     return (
       <div className="list-card">
-        {/* {selected ? (
-          <div className="list-main" onClick={handleClick}>
-            <h2 className="list-title__selected">{list.title}</h2>
-          </div>
-        ) : (
-          <div className="list-main" onClick={handleClick}>
-            <h2 className="list-title">{list.title}</h2>
-          </div>
-        )} */}
+        
         <div className="list-main" onClick={handleClick}>
           <h2 className="list-title">{list.title}</h2>
         </div>
