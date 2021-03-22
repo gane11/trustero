@@ -8,11 +8,9 @@ import EditListModal from "./EditListModal";
 
 const ListCard = ({list, handleSetTask, getAllLists}) => {
     const dispatch = useDispatch();
-    // const [selected, setSelected] = useState(false)
     
     const handleClick = () => {
       handleSetTask(list.id);
-      // setSelected(true)
     }
  
     
