@@ -120,7 +120,7 @@ export default function CreateCommentModal({ taskId }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            {/* <form onSubmit={handleSubmit}> */}
+          
             <h2>Add Comment</h2>
             <div>
               <textarea
@@ -141,7 +141,7 @@ export default function CreateCommentModal({ taskId }) {
             >
               ADD
             </Button>
-            {/* </form> */}
+         
           </div>
         </Fade>
       </Modal>
