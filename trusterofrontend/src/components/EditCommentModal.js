@@ -5,12 +5,10 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is required for IE 11 support
 import { Button } from "@material-ui/core";
-import { createComment } from "../store/actions/commentActions";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./CreateCommentModal.css";
 import EditIcon from "@material-ui/icons/Edit";
 import {
-  deleteComment,
   clearAllComments,
   getAllComments,
   editComment
