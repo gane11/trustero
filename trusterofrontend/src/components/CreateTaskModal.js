@@ -6,7 +6,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is required for IE 11 support
 import { Button } from "@material-ui/core";
 import { createTask, getAllTasks, clearAllTasks } from "../store/actions/taskActions";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./CreateTaskModal.css"
 
 const useStyles = makeStyles((theme) => ({
