@@ -17,7 +17,6 @@ const Home = () => {
     const handleSetComment = (task) => {
         setCommentsSection(task)
     }
-//alex
     return (
       <>
         <div className="home__container">
