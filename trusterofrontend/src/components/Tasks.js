@@ -26,7 +26,7 @@ const Tasks = ({tasksSection, tasks, getAllTasks, handleSetComment }) => {
           </>
         );
     };
-
+    //add some more
     return (
       <div className="tasks__container">
         <h2 className="lists-header">TASKS</h2>
