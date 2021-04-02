@@ -21,4 +21,5 @@
 
 .task-buttons {
     display: flex;
+    margin-left: 0;
 }
