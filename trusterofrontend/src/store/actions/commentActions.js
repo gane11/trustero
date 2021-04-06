@@ -91,5 +91,3 @@ export const editComment= (comment, id) => {
     }
   };
 };
-
-//add comment

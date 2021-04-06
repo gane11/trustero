@@ -94,4 +94,3 @@ export const editTask = (task, id) => {
   };
 };
 
-//add task
