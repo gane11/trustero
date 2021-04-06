@@ -16,5 +16,6 @@
 .list-buttons {
     display: flex;
     margin-top: 1rem;
+    margin-bottom: 0;
 }
 
