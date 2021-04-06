@@ -12,7 +12,7 @@ const Navbar = () => {
             </a>
             <div className="navbar-middle"></div>
             <div className="navbar-right">
-              <h1>Todos List</h1>
+              <h1>Todos Lists</h1>
             </div>
           </div>
         );
@@ -21,3 +21,4 @@ const Navbar = () => {
 
 
 export default Navbar
+
