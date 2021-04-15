@@ -40,4 +40,3 @@ export default function reducer(state= {}, action) {
 }
 
 
-//this reducers need to be changed
