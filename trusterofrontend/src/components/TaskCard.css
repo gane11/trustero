@@ -25,3 +25,8 @@
     margin-left: 0;
 }
 
+/
+.task {
+    display: inline;
+    margin-top: 2rem;
+}
