@@ -40,5 +40,3 @@ export default Home;
 
 
 
-
-//add new her

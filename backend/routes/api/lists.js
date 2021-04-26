@@ -101,5 +101,3 @@ router.delete('/:id', asyncHandler(async (req,res, next) => {
 
 module.exports = router
 
-
-//add 2
